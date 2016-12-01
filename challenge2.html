@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Timer Challenge</title>
+
+  </head>
+  <body>
+    <h2>Click the button to start the timer</h2>
+    <button id="start_button"type="button" name="button">Start</button>
+    <button id="click_button" type="button" name="button">Click Me!</button>
+    <p id="score"></p>
+    <p id="time"></p>
+
+    <script>
+      var startButton = document.getElementById('start_button');
+      var clickButton = document.getElementById('click_button');
+      var counter;
+      //Hide the cick-button
+      clickButton.style.visibility = "hidden";
+
+      //When the start-button is clicked, Hide the start-button and show the click-button
+      startButton.addEventListener("click", function(){
+        console.log("startButton");
+        //Zero out all of score and timer display
+        document.getElementById('score').innerHTML = "";
+        document.getElementById('time').innerHTML = "";
+        clickButton.style.visibility = "visible";
+        startButton.style.visibility = "hidden";
+        counter = 0;
+        runTimer();
+      });
+
+      clickButton.addEventListener("click", function(){
+        counter ++;
+        document.getElementById('score').innerHTML = "Score: " + counter;
+      })
+
+      function runTimer(){
+        //Generate a random integer between 1000 and 5000
+        rand = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+        //At the end of that random amount of time, hide the click-button and show the start-button
+        setTimeout(function(){
+          console.log(rand)
+          document.getElementById('time').innerHTML = "Time: " + (rand/1000) + " seconds";
+          startButton.style.visibility = "visible";
+          clickButton.style.visibility = "hidden";
+        }, rand)
+
+      }
+    </script>
+  </body>
+
+</html>
